@@ -15,6 +15,8 @@ public class Param_uploadFile extends BaseParam{
 	public String fileName;
     //提交过来的file的MIME类型
 	public String fileType;
+	//项目模块 例如 头像 avatar
+	public String folder_name;
 	
  
 	
@@ -26,6 +28,12 @@ public class Param_uploadFile extends BaseParam{
 	
 	
 	
+	public String getFolder_name() {
+		return folder_name;
+	}
+	public void setFolder_name(String folder_name) {
+		this.folder_name = folder_name;
+	}
 	public MultipartFile getFile() {
 		return file;
 	}

@@ -73,7 +73,7 @@ public class FileUploadAction extends BaseV1Controller{
 					 */
 					if(param.getWidth() != null && param.getHeight() != null){
 						//进行按指定宽和高进行设置
-						String filename = ImgUtil.ImgSize(MyConstant.toSavePath, file.getInputStream(), param.getWidth(), param.getHeight(), param.getFileType());
+						String filename = ImgUtil.ImgSize(MyConstant.BASE_DIR, file.getInputStream(), param.getWidth(), param.getHeight(), param.getFileType());
 						String fileurl = MyConstant.BASE_URL+filename;
 						returnData.setReturnData(errorcode_success, "file is upload ok", fileurl);
 						sendResp(returnData,response);
