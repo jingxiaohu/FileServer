@@ -17,6 +17,8 @@ public class Param_uploadFile extends BaseParam{
 	public String fileType;
 	//项目模块 例如 头像 avatar
 	public String folder_name;
+	//图片文件处理类型  0:指定像素大小  1：进行缩放
+	public int act_type;
 	
  
 	
@@ -28,6 +30,12 @@ public class Param_uploadFile extends BaseParam{
 	
 	
 	
+	public int getAct_type() {
+		return act_type;
+	}
+	public void setAct_type(int act_type) {
+		this.act_type = act_type;
+	}
 	public String getFolder_name() {
 		return folder_name;
 	}

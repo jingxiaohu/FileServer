@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.jxh.bean.ReturnDataNew;
 import com.jxh.constant.MyConstant;
+import com.jxh.file.FileSaveFolder;
 import com.jxh.file.ImgUtil;
 import com.jxh.mvc.controller.BaseV1Controller;
 import com.jxh.mvc.controller.fileupload.param.Param_uploadFile;
@@ -44,7 +45,12 @@ public class FileUploadAction extends BaseV1Controller{
 						 return null; 
 					 }
 					 //对封装的参数对象中的属性进行 非空等规则验证
-					
+					if(RequestUtil.checkObjectBlank(param.getFolder_name())){
+						returnData.setReturnData(errorcode_param, " folder_name is null", null);
+						sendResp(returnData,response);
+						return null;
+					}
+					 
 					if(RequestUtil.checkObjectBlank(param.getFile())){
 						returnData.setReturnData(errorcode_param, " file is null", null);
 						sendResp(returnData,response);
@@ -71,9 +77,31 @@ public class FileUploadAction extends BaseV1Controller{
 					/**
 					 * 这里处理文件的读取存取等
 					 */
+					if(param.getWidth() == null && param.getHeight() == null){
+						if(param.getFolder_name().equalsIgnoreCase(FileSaveFolder.avatar.getSavefolder_name())){
+							//头像
+							param.setWidth(FileSaveFolder.avatar.getWidth());
+							param.setWidth(FileSaveFolder.avatar.getHeight());
+						}else if(param.getFolder_name().equalsIgnoreCase(FileSaveFolder.lience.getSavefolder_name())){
+							//行驶证
+							param.setWidth(FileSaveFolder.lience.getWidth());
+							param.setWidth(FileSaveFolder.lience.getHeight());
+						}
+					}
+					
+					
+					
+					
 					if(param.getWidth() != null && param.getHeight() != null){
-						//进行按指定宽和高进行设置
-						String filename = ImgUtil.ImgSize(MyConstant.BASE_DIR, file.getInputStream(), param.getWidth(), param.getHeight(), param.getFileType());
+						String filename =  null;
+						if(param.getAct_type() == 0){
+							//指定像素设置
+							 filename = ImgUtil.ImgSize(MyConstant.BASE_DIR, file.getInputStream(), param.getWidth(), param.getHeight(), param.getFileType());
+						}else{
+							//比例缩放
+							 filename = ImgUtil.ImgSize(MyConstant.BASE_DIR, file.getInputStream(), param.getWidth(), param.getHeight(), param.getFileType());
+						}
+						
 						String fileurl = MyConstant.BASE_URL+filename;
 						returnData.setReturnData(errorcode_success, "file is upload ok", fileurl);
 						sendResp(returnData,response);
