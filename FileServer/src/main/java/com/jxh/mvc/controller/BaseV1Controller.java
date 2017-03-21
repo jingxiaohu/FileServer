@@ -18,7 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -36,7 +37,7 @@ public class BaseV1Controller {
 	@Autowired 
 	private ServletContext servletContext;
 	
-	protected Logger log =  Logger.getLogger(BaseV1Controller.class); 
+	protected Logger log =  LoggerFactory.getLogger(BaseV1Controller.class); 
 	
 	protected String SUCCESS="success";
 	protected String ERROR="error";

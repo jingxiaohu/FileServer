@@ -11,6 +11,6 @@ public class HelloController extends BaseController{
     @ResponseBody
     public String index() throws Exception {
     	System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        return "Greetings from Spring Boot!";
+        return "Greetings from Spring Boot!2";
     }
 }

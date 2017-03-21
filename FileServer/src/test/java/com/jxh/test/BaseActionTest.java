@@ -16,7 +16,8 @@ import java.util.TreeMap;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.PostMethod;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -28,7 +29,7 @@ import org.apache.log4j.Logger;
  */
 public class BaseActionTest {
 	//http://139.224.29.103:8091/druid/index.html
-	Logger log = Logger.getLogger(BaseActionTest.class);
+	Logger log = LoggerFactory.getLogger(BaseActionTest.class);
 //	protected static String BaseUrl = "http://127.0.0.1:8080/stopcar_springmvc/v1/";
 //	protected static String BaseUrl = "http://139.224.29.103:8091/v1/";
 	protected static String BaseUrl = "http://app.qc-wbo.com/v1/";
