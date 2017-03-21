@@ -14,9 +14,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.SpringServletContainerInitializer;
 
 @SpringBootApplication
-public class Application {
+public class Application extends SpringServletContainerInitializer{
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
