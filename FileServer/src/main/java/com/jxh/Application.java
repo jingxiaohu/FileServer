@@ -25,8 +25,8 @@ public class Application extends SpringBootServletInitializer{
     @Bean  
     public MultipartConfigElement multipartConfigElement() {  
         MultipartConfigFactory factory = new MultipartConfigFactory();  
-        factory.setMaxFileSize("2048KB");  
-        factory.setMaxRequestSize("2048KB");  
+        factory.setMaxFileSize("20480KB");  
+        factory.setMaxRequestSize("20480KB");  
         return factory.createMultipartConfig();  
     }
     @Bean
