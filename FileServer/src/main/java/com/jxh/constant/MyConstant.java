@@ -8,7 +8,7 @@ public final class MyConstant {
 	/**
 	 * 服务器访问域名
 	 */
-	public static String domain = "app.qc-wbo.com";
+	public static String domain = "file.qc-wbo.com";
 	
 	public static final  String BaseSavePath = "/home/data/file";
 	public static final String SYSTEM_CHARACTER = "UTF-8"; 
