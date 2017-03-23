@@ -21,7 +21,7 @@ public class ErrorHandleController implements ErrorController {
     	response.setContentType("text/json; charset=utf-8");
 		response.setCharacterEncoding("utf-8");
 		try {
-			String data = " test is error";
+			String data = "路径错误";
 			response.getWriter().write(data);
 		} catch (Exception e) {
 		}
