@@ -6,8 +6,6 @@ import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.alibaba.fastjson.JSONObject;
-
 @Controller
 public class ErrorHandleController implements ErrorController {
 
