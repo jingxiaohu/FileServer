@@ -1,5 +1,7 @@
 package com.jxh.mvc.controller.fileupload;
 
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -94,12 +96,13 @@ public class FileUploadAction extends BaseV1Controller{
 					
 					if(param.getWidth() != null && param.getHeight() != null){
 						String filename =  null;
+						String tosavePath = MyConstant.BASE_DIR+File.separator+param.getFolder_name();
 						if(param.getAct_type() == 0){
 							//指定像素设置
-							 filename = ImgUtil.ImgSize(MyConstant.BASE_DIR, file.getInputStream(), param.getWidth(), param.getHeight(), param.getFileType());
+							 filename = ImgUtil.ImgSize(tosavePath, file.getInputStream(), param.getWidth(), param.getHeight(), param.getFileType());
 						}else{
 							//比例缩放
-							 filename = ImgUtil.ImgSize(MyConstant.BASE_DIR, file.getInputStream(), param.getWidth(), param.getHeight(), param.getFileType());
+							 filename = ImgUtil.ImgSize(tosavePath, file.getInputStream(), param.getWidth(), param.getHeight(), param.getFileType());
 						}
 						
 						String fileurl = MyConstant.BASE_URL+filename;

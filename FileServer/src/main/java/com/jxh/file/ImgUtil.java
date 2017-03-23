@@ -24,9 +24,11 @@ public class ImgUtil extends BaseLog{
 	 * @param imgType:源图片类型 例如: jpeg 、 jpg 、png、gif
 	 * @throws IOException
 	 */
-	public static String ImgSize(String toSavePath,InputStream imageIn,int width,int height,String imgType) throws IOException{
+	public static String ImgSize(String toSavePath,InputStream imageIn,int width,int height,String imgType) throws Exception{
 		//图片文件名称  命名规则  宽_高
 		String imageName = RandomUtil.return16()+"_"+width+"_"+height+"."+imgType;
+		//检查文件目录是否存在 不存在则进行创建
+		isExistCreate(toSavePath);
 		Thumbnails.of(imageIn).size(width, height).toFile(toSavePath+File.separator+imageName);
 		return imageName;
 	}
@@ -40,11 +42,23 @@ public class ImgUtil extends BaseLog{
 	 * @param imgType:源图片类型 例如: jpeg 、 jpg 、png、gif
 	 * @throws IOException
 	 */
-	public static String ImgScale(String toSavePath,InputStream imageIn,Double scaleWidth,Double scaleHeight,String imgType) throws IOException{
+	public static String ImgScale(String toSavePath,InputStream imageIn,Double scaleWidth,Double scaleHeight,String imgType) throws Exception{
 		//图片文件名称 
 		String imageName = RandomUtil.return16()+"."+imgType;
+		//检查文件目录是否存在 不存在则进行创建
+		isExistCreate(toSavePath);
 		Thumbnails.of(imageIn).scale(scaleWidth, scaleHeight).toFile(toSavePath+File.separator+imageName);
 		return imageName;
 	}
 	
+	/**
+	 * 检查文件目录是否存在 不存在则进行创建
+	 * @param toSavePath
+	 */
+	public static void isExistCreate(String toSavePath) throws Exception {
+		File file = new File(toSavePath);
+		if(!file.exists())   {
+			file.mkdirs();
+		}
+	}
 }
