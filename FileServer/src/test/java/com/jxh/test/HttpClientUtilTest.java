@@ -42,7 +42,7 @@ public class HttpClientUtilTest {
         fileLists.add(new File("D://test//httpclient//1.png"));  
         fileLists.add(new File("D://test//httpclient//1.txt"));  
         String responseContent = HttpClientUtil.getInstance()  
-                .sendHttpPost("http://localhost:8089/test/sendpost/file", maps, fileLists);  
+                .sendHttpPost("http://localhost:8089/test/sendpost/file", maps, fileLists,"file");  
         System.out.println("reponse content:" + responseContent);  
     }  
   

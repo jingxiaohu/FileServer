@@ -8,18 +8,20 @@ import java.util.Map;
 
 import org.junit.Test;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.jxh.constant.MyConstant;
 
 /**
- * 文件上传
+ * 多文件上传
  * @author jingxiaohu
  *
  */
-public class FileUploadActionTest extends BaseActionTest{
+public class FileMoreUploadActionTest extends BaseActionTest{
 	
 	@Test  
-    public void fileupload() {  
-		String url  = BaseUrl + "/fileupload.php";
+    public void fileupload_more() {  
+		String url  = BaseUrl + "/fileupload_more.php";
 		int dtype = 0;
         Map<String, String> maps = new HashMap<String, String>();  
     	Integer width = 100; //宽 像素
@@ -38,15 +40,26 @@ public class FileUploadActionTest extends BaseActionTest{
         
         List<File> fileLists = new ArrayList<File>();  
         File  file = new File("D://temp//lience.png");
-        System.out.println(file.isFile());
-        System.out.println(file.exists());
+        File  file2 = new File("D://temp//lience.png");
+        File  file3 = new File("D://temp//lience.png");
         if(file.exists() && file.isFile()){
         	fileLists.add(file); 
         }
+        if(file2.exists() && file2.isFile()){
+        	fileLists.add(file2); 
+        }
+        if(file3.exists() && file3.isFile()){
+        	fileLists.add(file3); 
+        }
          
         String responseContent = HttpClientUtil.getInstance()  
-                .sendHttpPost(url, maps, fileLists,"file");  
+                .sendHttpPost(url, maps, fileLists,"files");  
         System.out.println("reponse content:" + responseContent);  
+        JSONObject obj = JSON.parseObject(responseContent);
+        if(obj != null){
+        	List<String> list = (List<String>)obj.get("data");
+        	System.out.println(list);
+        }
     }  
   
 }

@@ -35,8 +35,8 @@ import org.apache.http.util.EntityUtils;
 public class HttpClientUtil {  
 	
 	RequestConfig defaultRequestConfig = RequestConfig.custom()
-		    .setSocketTimeout(5000)
-		    .setConnectTimeout(5000)
+		    .setSocketTimeout(6000)
+		    .setConnectTimeout(6000)
 		    .setConnectionRequestTimeout(30000)
 		    .build();
 	
@@ -107,7 +107,7 @@ public class HttpClientUtil {
      * @param maps 参数 
      * @param fileLists 附件 
      */  
-    public String sendHttpPost(String httpUrl, Map<String, String> maps, List<File> fileLists) {  
+    public String sendHttpPost(String httpUrl, Map<String, String> maps, List<File> fileLists,String file_RequestName) {  
         HttpPost httpPost = new HttpPost(httpUrl);// 创建httpPost  
         httpPost.setConfig(requestConfig);
         MultipartEntityBuilder meBuilder = MultipartEntityBuilder.create();  
@@ -116,7 +116,7 @@ public class HttpClientUtil {
         }  
         for(File file : fileLists) {  
             FileBody fileBody = new FileBody(file);  
-            meBuilder.addPart("file", fileBody);  
+            meBuilder.addPart(file_RequestName, fileBody);  
         }  
         HttpEntity reqEntity = meBuilder.build();  
         httpPost.setEntity(reqEntity);  
