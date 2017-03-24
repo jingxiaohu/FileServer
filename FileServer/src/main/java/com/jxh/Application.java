@@ -46,7 +46,7 @@ public class Application extends SpringBootServletInitializer{
         return new EmbeddedServletContainerCustomizer(){
             @Override
             public void customize(ConfigurableEmbeddedServletContainer container) {
-                container.setPort(8090);
+                container.setPort(8080);
             }
         };
     }
