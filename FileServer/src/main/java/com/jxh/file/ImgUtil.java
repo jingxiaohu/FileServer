@@ -29,7 +29,9 @@ public class ImgUtil extends BaseLog{
 		String imageName = RandomUtil.return16()+"_"+width+"_"+height+"."+imgType;
 		//检查文件目录是否存在 不存在则进行创建
 		isExistCreate(toSavePath);
-		Thumbnails.of(imageIn).size(width, height).toFile(toSavePath+File.separator+imageName);
+		File file = new File(toSavePath+File.separator+imageName);
+		Thumbnails.of(imageIn).size(width, height).toFile(file);
+		file.setReadable(true, false);
 		return imageName;
 	}
 	
@@ -47,7 +49,9 @@ public class ImgUtil extends BaseLog{
 		String imageName = RandomUtil.return16()+"."+imgType;
 		//检查文件目录是否存在 不存在则进行创建
 		isExistCreate(toSavePath);
-		Thumbnails.of(imageIn).scale(scaleWidth, scaleHeight).toFile(toSavePath+File.separator+imageName);
+		File file = new File(toSavePath+File.separator+imageName);
+		Thumbnails.of(imageIn).scale(scaleWidth, scaleHeight).toFile(file);
+		file.setReadable(true, false);
 		return imageName;
 	}
 	
@@ -59,6 +63,8 @@ public class ImgUtil extends BaseLog{
 		File file = new File(toSavePath);
 		if(!file.exists())   {
 			file.mkdirs();
+			file.setReadable(true, false);
+//			file.setWritable(true, false);
 		}
 	}
 }
