@@ -1,5 +1,6 @@
 package com.jxh.mvc.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -307,8 +308,21 @@ public class BaseV1Controller {
 		return m.matches();  
 	}  
 	 
+	/**
+	 * 返回URL文件的分隔符 
+	 * @param file
+	 * @return
+	 */
+	public String returnFileSeparatorUrl(){
+		 String os = System.getProperty("os.name");  
+		 if(os.toLowerCase().startsWith("win")){  
+		   return "/"; 
+		 }else{
+		   return File.separator;
+		 }  
+	 }
 	 
-
+	
 		
 		
 		

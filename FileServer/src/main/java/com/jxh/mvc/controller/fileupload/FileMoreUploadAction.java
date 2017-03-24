@@ -126,7 +126,7 @@ public class FileMoreUploadAction extends BaseV1Controller{
 								 filename = ImgUtil.ImgSize(tosavePath, file.getInputStream(), param.getWidth(), param.getHeight(), param.getFileType());
 							}
 							
-							String fileurl = MyConstant.BASE_URL+folder_name+File.separator+filename;
+							String fileurl = MyConstant.BASE_URL+folder_name+returnFileSeparatorUrl()+filename;
 							file_url_list.add(fileurl);
 						}
 					}
