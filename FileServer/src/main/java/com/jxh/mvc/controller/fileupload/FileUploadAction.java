@@ -96,7 +96,8 @@ public class FileUploadAction extends BaseV1Controller{
 					
 					if(param.getWidth() != null && param.getHeight() != null){
 						String filename =  null;
-						String tosavePath = MyConstant.BASE_DIR+File.separator+param.getFolder_name();
+						String folder_name = param.getFolder_name() == null?"":param.getFolder_name();
+						String tosavePath = MyConstant.BASE_DIR+File.separator+folder_name;
 						if(param.getAct_type() == 0){
 							//指定像素设置
 							 filename = ImgUtil.ImgSize(tosavePath, file.getInputStream(), param.getWidth(), param.getHeight(), param.getFileType());
@@ -105,7 +106,7 @@ public class FileUploadAction extends BaseV1Controller{
 							 filename = ImgUtil.ImgSize(tosavePath, file.getInputStream(), param.getWidth(), param.getHeight(), param.getFileType());
 						}
 						
-						String fileurl = MyConstant.BASE_URL+filename;
+						String fileurl = MyConstant.BASE_URL+folder_name+File.separator+filename;
 						returnData.setReturnData(errorcode_success, "file is upload ok", fileurl);
 						sendResp(returnData,response);
 						return null;
