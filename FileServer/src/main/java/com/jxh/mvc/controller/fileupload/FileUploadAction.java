@@ -24,7 +24,7 @@ public class FileUploadAction extends BaseV1Controller{
 
     @RequestMapping(value="/fileupload",method=RequestMethod.POST)
     @ResponseBody
-    String fileupload(HttpServletRequest request,HttpServletResponse response,Param_uploadFile param) {
+    public void fileupload(HttpServletRequest request,HttpServletResponse response,Param_uploadFile param) {
     	       ReturnDataNew returnData = null;
     	       try {
 				   returnData = new ReturnDataNew();
@@ -38,25 +38,21 @@ public class FileUploadAction extends BaseV1Controller{
 						 //参数传递错误 
 						 returnData.setReturnData(errorcode_param, "参数传递错误", "");
 						 sendResp(returnData,response);
-						 return null; 
 					 }
 					 //检查是否进行了参数签名认证
 					 if(!param.checkRequest()){
 						 returnData.setReturnData(errorcode_param, "没有进行参数签名认证", "");
 						 sendResp(returnData,response);
-						 return null; 
 					 }
 					 //对封装的参数对象中的属性进行 非空等规则验证
 					if(RequestUtil.checkObjectBlank(param.getFolder_name())){
 						returnData.setReturnData(errorcode_param, " folder_name is null", null);
 						sendResp(returnData,response);
-						return null;
 					}
 					 
 					if(RequestUtil.checkObjectBlank(param.getFile())){
 						returnData.setReturnData(errorcode_param, " file is null", null);
 						sendResp(returnData,response);
-						return null;
 					}
 					
 					/**
@@ -74,7 +70,6 @@ public class FileUploadAction extends BaseV1Controller{
 						log.error("sign="+param.sign+"  sign_str="+sign_str);
 						returnData.setReturnData(errorcode_param, " sign is not right", null);
 						sendResp(returnData,response);
-						return null;
 					}
 					/**
 					 * 这里处理文件的读取存取等
@@ -88,6 +83,9 @@ public class FileUploadAction extends BaseV1Controller{
 							//行驶证
 							param.setWidth(FileSaveFolder.lience.getWidth());
 							param.setWidth(FileSaveFolder.lience.getHeight());
+						}else{
+							returnData.setReturnData(errorcode_param, "非法目录请求", "");
+							sendResp(returnData,response);
 						}
 					}
 					
@@ -109,21 +107,18 @@ public class FileUploadAction extends BaseV1Controller{
 						String fileurl = MyConstant.BASE_URL+folder_name+File.separator+filename;
 						returnData.setReturnData(errorcode_success, "file is upload ok", fileurl);
 						sendResp(returnData,response);
-						return null;
 					}
 					
 					
 					
 					returnData.setReturnData(errorcode_param, "file is upload fail", "");
 					sendResp(returnData,response);
-					return null;
 			} catch (Throwable e) {
 				// TODO Auto-generated catch block
 				log.error("FileUploadAction->fileupload is error ", e);
 				returnData.setReturnData(errorcode_param, "file is upload fail", "");
 			}
     	    sendResp(returnData,response);
-    		return null; 
-    }
+       }
     
 }
